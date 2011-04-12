@@ -6,6 +6,9 @@ OUT_FILE=$TEMP_DIR/output
 SUFFIXES=(.shp .shx)
 PROGRAM=./quadtree 
 
+echo $@ 1>&2 
+echo $IN_FILE 1>&2 
+
 mkdir $TEMP_DIR
 for ext in "${SUFFIXES[@]}"
 do
@@ -14,7 +17,6 @@ do
 done
 
 $PROGRAM $TEMP_DIR/${IN_FILE##*/}.shx $OUT_FILE
-ls $TEMP_DIR
 
 cat $OUT_FILE.txt
 
