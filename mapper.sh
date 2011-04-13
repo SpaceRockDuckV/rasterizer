@@ -1,6 +1,6 @@
 #!/bin/sh
 read IN
-IN_FILE=${IN#* }
+IN_FILE=/${IN#*/}
 
 TEMP_DIR=./tmp
 OUT_FILE=$TEMP_DIR/output
