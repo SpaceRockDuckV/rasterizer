@@ -73,7 +73,7 @@ public:
 	VFTree(const struct sconfig&);
 	~VFTree();
 	int rasterizelayer(const OGRLayerH layer);
-	void textVFTree(char*);
+	void textVFTree();
 private:
 	struct vftree * lroot;	
 	int		*num_hier[DIM];
@@ -84,7 +84,7 @@ private:
 	int handleSingleLine(struct vftree *croot,int xorg,int yorg,int lev,int y,int x1,int x2);
 	void trimtree(vftree *& root);
 	template <class T> std::string print_path(const T * croot);
-	void text_vf_tree(std::fstream& out, const vftree *croot);
+	void text_vf_tree(const vftree *croot);
 	int calcYOrg(const vftree *croot);
 	void node2coord(const vftree * croot,int& nx1,int& ny1,int& nx2,int& ny2);
 	void delete_vf_tree(vftree *&);

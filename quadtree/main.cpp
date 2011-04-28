@@ -1,5 +1,6 @@
-//compile: g++ llrasterize.cpp main.cpp tree.cpp  -lgdal -o sinlgeraster -O3
-//run example: sinlgeraster /space/birds/Accipitridae/acci_bico_pl.shp acci_bico_pl
+// compile: g++ llrasterize.cpp main.cpp tree.cpp  -lgdal -o sinlgeraster -O3
+// output is sent to STDOUT
+// run example: sinlgeraster /space/birds/Accipitridae/acci_bico_pl.shp 
 
 
 #include <iostream>
@@ -66,17 +67,17 @@ void quadgrid(sconfig& s)
 	s.fscales[1]=s.fscales[0];
 }
 
-void output_lnq(VFTree& t,char *fn)
+void output_lnq(VFTree& t)
 {
-	t.textVFTree(fn);
+	t.textVFTree();
 }
 
 
 int main(int argc,char** argv)
 {
-	if(argc!=3)
+	if(argc!=2)
 	{
-		printf("EXE IN_FILE_NAME OUT_FN_NAME \n");
+		printf("EXE IN_FILE_NAME \n");
 		exit(-1);
 	}
 	sconfig s;
@@ -84,11 +85,10 @@ int main(int argc,char** argv)
 	RegisterOGRShape();
 	VFTree t(s);
 	char *in_fn=argv[1];
-	char *out_fn=argv[2];
 	int ret=-9999;
 	if(in_fn!=NULL)
 		ret=rasterize_shp(t,in_fn);
-	if(ret>=0&&out_fn!=NULL)
-		output_lnq(t,out_fn);
+	if(ret>=0)
+		output_lnq(t);
 	return ret;
 }

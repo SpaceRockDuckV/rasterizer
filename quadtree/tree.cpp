@@ -279,30 +279,21 @@ void VFTree::delete_vf_tree(vftree *& croot)
 	croot=NULL;
 }
 
-void VFTree::textVFTree(char *fn)
+void VFTree::textVFTree()
 {
-	char ss[100];
-	strcpy(ss,fn);
-	strcat(ss,".txt");
-	fstream fo(ss,ios::out);
-	if(fo.fail())
-	{
-		printf("can not create output file %s\n",ss);
-		exit(-1);
-	}
-	text_vf_tree(fo,lroot);
+	text_vf_tree(lroot);
 }
 
-void VFTree::text_vf_tree(fstream& out, const struct vftree *croot)
+void VFTree::text_vf_tree(const struct vftree *croot)
 {
 	if(croot==NULL)
 		return;
 	if(croot->children==NULL)
 	{
-		out<<print_path(croot)<<" ";
+		cout<<print_path(croot)<<" ";
 		int x1=0,y1=0,x2=0,y2=0;
 		node2coord(croot,x1,y1,x2,y2);
-		out<<x1<<" "<<y1<<" "<<x2<<" "<<y2<<string(" 1 ")<<croot->level<<endl;
+		cout<<x1<<" "<<y1<<" "<<x2<<" "<<y2<<string(" 1 ")<<croot->level<<endl;
 		return;
 	}
 	int lev=croot->level;
@@ -310,7 +301,7 @@ void VFTree::text_vf_tree(fstream& out, const struct vftree *croot)
 		for(int j=0;j<config.scales[1][lev];j++)
 		{
 			int ind=i*config.scales[1][lev]+j;
-			text_vf_tree(out,croot->children[ind]);
+			text_vf_tree(croot->children[ind]);
 		}
 }
 
