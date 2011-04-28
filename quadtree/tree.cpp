@@ -328,3 +328,4 @@ void VFTree::node2coord(const vftree * croot,int& nx1,int& ny1,int& nx2,int& ny2
 	nx2=nx1+num_hier[0][croot->level];
 	ny2=ny1+num_hier[1][croot->level];
 }
+
