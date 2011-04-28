@@ -290,7 +290,7 @@ void VFTree::text_vf_tree(const struct vftree *croot)
 		return;
 	if(croot->children==NULL)
 	{
-		cout<<print_path(croot)<<" ";
+		cout<<print_path(croot)<<"\t";
 		int x1=0,y1=0,x2=0,y2=0;
 		node2coord(croot,x1,y1,x2,y2);
 		cout<<x1<<" "<<y1<<" "<<x2<<" "<<y2<<string(" 1 ")<<croot->level<<endl;
