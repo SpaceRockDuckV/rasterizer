@@ -62,7 +62,7 @@ int VFTree::rasterizelayer(const OGRLayerH layer)
 		OGRGeometry *poShape=(OGRGeometry *)OGR_F_GetGeometryRef( hFeat );
 		if(poShape==NULL)
 		{
-			cout<<"error:............shape is NULL"<<endl;
+			cerr<<"error:............shape is NULL"<<endl;
 			continue;
 		}
 	    OGRwkbGeometryType eFlatType = wkbFlatten(poShape->getGeometryType());
