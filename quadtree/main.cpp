@@ -67,9 +67,9 @@ void quadgrid(sconfig& s)
 	s.fscales[1]=s.fscales[0];
 }
 
-void output_lnq(VFTree& t)
+void output_lnq(VFTree& t, char * id)
 {
-	t.textVFTree();
+	t.textVFTree(id);
 }
 
 
@@ -86,9 +86,17 @@ int main(int argc,char** argv)
 	VFTree t(s);
 	char *in_fn=argv[1];
 	int ret=-9999;
+  int i=strlen(argv[1]);
+	char * id=argv[1]+i-1;
 	if(in_fn!=NULL)
 		ret=rasterize_shp(t,in_fn);
-	if(ret>=0)
-		output_lnq(t);
+	if(ret>=0) {
+	  while (*id && *id!='/') {
+	    if (*id=='.') *id=0;
+	    id--;
+	  }
+	  output_lnq(t, id+1);
+		
+  }
 	return ret;
 }

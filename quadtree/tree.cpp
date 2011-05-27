@@ -279,21 +279,18 @@ void VFTree::delete_vf_tree(vftree *& croot)
 	croot=NULL;
 }
 
-void VFTree::textVFTree()
+void VFTree::textVFTree(char * id)
 {
-	text_vf_tree(lroot);
+	text_vf_tree(lroot, id);
 }
 
-void VFTree::text_vf_tree(const struct vftree *croot)
+void VFTree::text_vf_tree(const struct vftree *croot, char * id)
 {
 	if(croot==NULL)
 		return;
 	if(croot->children==NULL)
 	{
-		cout<<print_path(croot)<<"\t";
-		int x1=0,y1=0,x2=0,y2=0;
-		node2coord(croot,x1,y1,x2,y2);
-		cout<<x1<<" "<<y1<<" "<<x2<<" "<<y2<<string(" 1 ")<<croot->level<<endl;
+		cout<<print_path(croot)<<"\t"<<id<<endl;
 		return;
 	}
 	int lev=croot->level;
@@ -301,7 +298,7 @@ void VFTree::text_vf_tree(const struct vftree *croot)
 		for(int j=0;j<config.scales[1][lev];j++)
 		{
 			int ind=i*config.scales[1][lev]+j;
-			text_vf_tree(croot->children[ind]);
+			text_vf_tree(croot->children[ind], id);
 		}
 }
 
