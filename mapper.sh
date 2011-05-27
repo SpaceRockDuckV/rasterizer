@@ -4,7 +4,7 @@ IN_FILE=/${IN#*/}
 
 TEMP_DIR=./tmp
 SUFFIXES=(.shp .shx)
-PROGRAM=./quadtree/quadtree 
+PROGRAM=./quadtree 
 
 mkdir $TEMP_DIR
 for ext in "${SUFFIXES[@]}"
